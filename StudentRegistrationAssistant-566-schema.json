@@ -1,0 +1,74 @@
+
+
+{
+  "openapi": "3.0.0", 
+  "info": {
+    "title": "StudentRegistrationAssistant-566 API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/coursesStats": {
+      "post": {
+        "description": "This operation will take a course and semester and provide relevant course information. If the student does not provide the required input information, ask the user to enter course and semester parameters.",
+        "parameters": [
+          {
+            "name": "course",
+            "in": "query",
+            "description": "The course name/code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "semester",
+            "in": "query",
+            "description": "The semester name/code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Course stats retrieved successfully"
+          }
+        }
+      }
+    },
+    "/registerClass": {
+      "post": {
+        "description": "This operation will take a course and semester, and register the student for this class. If the student does not provide the required input information, ask the student to provide course and semester parameters. Return success if the registration completed. If the class is full, return failure and tell the student it will be put in the waiting list.",
+        "parameters": [
+          {
+            "name": "course",
+            "in": "query",
+            "description": "The course name/code to register for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "semester",
+            "in": "query", 
+            "description": "The semester to register for the course",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Registration successful" 
+          },
+          "400": {
+            "description": "Registration failed - class is full. Added to waiting list."
+          }
+        }
+      }
+    }
+  }
+}
